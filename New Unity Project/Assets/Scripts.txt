@@ -1,0 +1,17 @@
+Scripts:
+
+- Player Movement
+- Player Attack
+
+- AI movement
+- AI attack
+
+- Game Timer
+
+- GUI
+
+- GameManager?
+
+- Sounds
+
+- 
