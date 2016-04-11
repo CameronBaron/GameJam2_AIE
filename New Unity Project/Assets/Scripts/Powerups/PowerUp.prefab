@@ -12,9 +12,10 @@ GameObject:
   - 135: {fileID: 13519330}
   - 23: {fileID: 2305126}
   - 54: {fileID: 5453396}
+  - 114: {fileID: 11404958}
   m_Layer: 0
-  m_Name: Sphere
-  m_TagString: Untagged
+  m_Name: PowerUp
+  m_TagString: PowerUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79,6 +80,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &11404958
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 149140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64ec6ae7f1bf19948a8b9278ee88bb0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pHealthMod: 1
+  pMoveMod: 1
+  ballTarget: {fileID: 0}
+  bSpeedMod: 1
+  bSizeMod: 1
 --- !u!135 &13519330
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -107,6 +124,10 @@ Prefab:
       value: 
       objectReference: {fileID: 13400000, guid: 9d23b5a38be09c946bc9177fed8e42e3,
         type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: PowerUp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 149140}

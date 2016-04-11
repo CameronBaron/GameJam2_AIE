@@ -10,7 +10,7 @@ public class PowerUpManagerScript : MonoBehaviour {
 	public GameObject powerupspawner;
 
 	public int maxSpawners;
-	float coolDown = 2.5f;
+	public float coolDown = 2.5f;
 	// Use this for initialization
 	void Start ()
 	{
@@ -37,7 +37,7 @@ public class PowerUpManagerScript : MonoBehaviour {
 
 			powerUpSpawners[randNum].GetComponent<PowerUpSpawnerScript>().isActive = true;
 
-			coolDown =1;
+			coolDown = 1;
 		}
 		Debug.Log("amount of spawners: " + powerUpSpawners.Count.ToString());
 	}
