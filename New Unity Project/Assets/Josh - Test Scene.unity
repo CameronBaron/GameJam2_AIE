@@ -85,6 +85,10 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &344118347 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 102918, guid: da25601517fb3b2418d23dfc77f132b0, type: 2}
+  m_PrefabInternal: {fileID: 1585157994}
 --- !u!1 &416522992
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,6 +164,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+--- !u!1 &775320685 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 102186, guid: da25601517fb3b2418d23dfc77f132b0, type: 2}
+  m_PrefabInternal: {fileID: 1585157994}
+--- !u!114 &775320686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 775320685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627ddb8e71598f44680b4f688299af7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ball: {fileID: 168304, guid: 1cb656bae9077344093b229f3ffbd474, type: 2}
+  rightHand: {fileID: 344118347}
+  ammo: 1
+  ballSpeed: 100
+  chargeUpTimer: 4
 --- !u!1001 &1585157994
 Prefab:
   m_ObjectHideFlags: 0
@@ -198,6 +222,18 @@ Prefab:
     - target: {fileID: 445430, guid: da25601517fb3b2418d23dfc77f132b0, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 468718, guid: da25601517fb3b2418d23dfc77f132b0, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.082
+      objectReference: {fileID: 0}
+    - target: {fileID: 468718, guid: da25601517fb3b2418d23dfc77f132b0, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 13653548, guid: da25601517fb3b2418d23dfc77f132b0, type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: da25601517fb3b2418d23dfc77f132b0, type: 2}
