@@ -4,9 +4,16 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
+  - PowerUp
+=======
   - Ground
   - Ball
+<<<<<<< HEAD
   - Waypoint
+=======
+>>>>>>> 96a45423093826f9cef7aa26cc23ccb8102107bf
+>>>>>>> 85d9d987ad205ccdd6e2d0ad66e419490fdbd379
   layers:
   - Default
   - TransparentFX
