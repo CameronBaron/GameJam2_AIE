@@ -14,6 +14,7 @@ GameObject:
   - 114: {fileID: 11441734}
   - 54: {fileID: 5431528}
   - 114: {fileID: 11477846}
+  - 114: {fileID: 11498460}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -46,7 +47,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 102186}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: 0.44243154, y: 0.5, z: -3.1272206}
+  m_LocalPosition: {x: 5.4692144, y: 0.5, z: -5.3699636}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 468718}
@@ -189,6 +190,20 @@ MonoBehaviour:
   ammo: 1
   ballSpeed: 25
   chargeUpTimer: 2
+--- !u!114 &11498460
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 102186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2094b70de4dcb9a4caa5b06613a8ca59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHealth: 100
+  invulnerabilityTime: 1
+  respawnPoint: {fileID: 0}
 --- !u!136 &13653548
 CapsuleCollider:
   m_ObjectHideFlags: 1

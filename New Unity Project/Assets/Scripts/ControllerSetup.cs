@@ -59,6 +59,15 @@ public class ControllerSetup : MonoBehaviour
 			var p = Instantiate(playerPrefab, spawnPos.Dequeue(), Quaternion.identity) as GameObject; // Need spawn position
 			p.GetComponent<PlayerMovementScript>().input = input;
 			players.Add(p);
+
+			if (players.Count <= 2)
+			{
+				p.GetComponent<HealthClass>().team = "Red";
+			}
+			else
+			{
+				p.GetComponent<HealthClass>().team = "Blue";
+			}
 		}
 	}
 }

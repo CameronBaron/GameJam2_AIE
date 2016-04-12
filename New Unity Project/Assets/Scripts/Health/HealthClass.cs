@@ -20,6 +20,8 @@ public class HealthClass : MonoBehaviour
     private BoxCollider bc;
     public GameObject respawnPoint;
 
+	public string team;
+
 	// Use this for initialization
 	void Start ()
     {
