@@ -14,7 +14,7 @@ public class Shooting : MonoBehaviour
 		Health pickup
 		
 	*/
-	InputDevice input { get; set; }
+	InputDevice input;
 	public GameObject ball;
 	public GameObject rightHand;
 
@@ -29,19 +29,22 @@ public class Shooting : MonoBehaviour
 	private GameObject rightBall;
 
 	private Transform playerTransform;
+	private BoxCollider bc;
 
 	// Use this for initialization
 	void Start ()
 	{
 		playerTransform = GetComponentInParent<Transform>();
+		input = GetComponent<PlayerMovementScript>().input;
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		input = InputManager.ActiveDevice;
 		if (!holdingRight) // If not holding in one hand, check to see if we should be
 			HoldBalls();
+		if (rightBall != null)
+			rightBall.transform.position = rightHand.transform.position;
 
 		Throw();
 		Block();
@@ -64,7 +67,8 @@ public class Shooting : MonoBehaviour
 	{
 		if (holdingRight && input.RightTrigger.IsPressed)
 		{
-			chargeUpCounter += Time.deltaTime;
+			if (chargeUpCounter < chargeUpTimer)
+				chargeUpCounter += Time.deltaTime;
 		}
 		// On right/left trigger press
 		// If ball in hand
@@ -72,13 +76,13 @@ public class Shooting : MonoBehaviour
 		if (holdingRight && input.RightTrigger.WasReleased)
 		{
 			rightBall.GetComponent<Rigidbody>().useGravity = true;
-			rightBall.GetComponent<Rigidbody>().AddForce(playerTransform.forward * ballSpeed * chargeUpCounter * 5, ForceMode.Impulse);
+			rightBall.GetComponent<Rigidbody>().AddForce(playerTransform.forward * ballSpeed * (chargeUpCounter * 0.1f) * 5, ForceMode.Impulse);
 			holdingRight = false;
 			chargeUpCounter = 0;
 			rightBall = null;
 		}
 	}
-
+	
 	void Block()
 	{
 	 // If left/right bumper pressed
@@ -86,7 +90,7 @@ public class Shooting : MonoBehaviour
 		{
 		//  Move hand to block/catch position
 			// If ball collides with front of player
-			if (ammo == 0)
+			if (ammo == 0 && !holdingRight)
 			{
 				// Catch
 				ammo++;
@@ -106,6 +110,15 @@ public class Shooting : MonoBehaviour
 			rightBall.GetComponent<Rigidbody>().useGravity = true;
 			holdingRight = false;
 			rightBall = null;
+		}
+	}
+
+	void PushBack()
+	{
+		if (input.Action3.WasPressed)
+		{
+			// Spawn box collider infront of Player to hit
+
 		}
 	}
 }

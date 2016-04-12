@@ -3,7 +3,7 @@ using InControl;
 
 public class PlayerMovementScript : MonoBehaviour
 {
-    InputDevice input { get; set; }
+    public InputDevice input { get; set; }
 
     [SerializeField]
     private float movementSpeed;
@@ -31,8 +31,6 @@ public class PlayerMovementScript : MonoBehaviour
 	void Update ()
     {
         dodgeCooldownTimer += Time.deltaTime;
-
-        input = InputManager.ActiveDevice;
         Vector3 directionOfStick = new Vector3(input.LeftStick.X, 0, input.LeftStick.Y);
 
         /* *****************************************************
@@ -40,7 +38,7 @@ public class PlayerMovementScript : MonoBehaviour
            ***************************************************** */ 
         if (input.LeftStick.X != 0.0f && input.LeftStickY != 0.0f)
         {
-            transform.position += new Vector3(input.LeftStick.X * movementSpeed * Time.deltaTime, 0, input.LeftStick.Y * movementSpeed * Time.deltaTime);           
+            transform.position += new Vector3(input.LeftStick.X * movementSpeed * Time.deltaTime, 0, input.LeftStick.Y * movementSpeed * Time.deltaTime);
         }
 
         /* *****************************************************
