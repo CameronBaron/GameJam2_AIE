@@ -34,6 +34,7 @@ public class Shooting : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+		gameObject.tag = "Player";
 		playerTransform = GetComponentInParent<Transform>();
 		input = GetComponent<PlayerMovementScript>().input;
 	}
@@ -47,7 +48,6 @@ public class Shooting : MonoBehaviour
 			rightBall.transform.position = rightHand.transform.position;
 
 		Throw();
-		Block();
 		DropBall();
 	}
 
@@ -76,30 +76,10 @@ public class Shooting : MonoBehaviour
 		if (holdingRight && input.RightTrigger.WasReleased)
 		{
 			rightBall.GetComponent<Rigidbody>().useGravity = true;
-			rightBall.GetComponent<Rigidbody>().AddForce(playerTransform.forward * ballSpeed * (chargeUpCounter * 0.1f) * 5, ForceMode.Impulse);
+			rightBall.GetComponent<Rigidbody>().AddForce(playerTransform.forward * (ballSpeed + chargeUpCounter * 3), ForceMode.Impulse);
 			holdingRight = false;
 			chargeUpCounter = 0;
 			rightBall = null;
-		}
-	}
-	
-	void Block()
-	{
-	 // If left/right bumper pressed
-		if (input.RightBumper.WasPressed)
-		{
-		//  Move hand to block/catch position
-			// If ball collides with front of player
-			if (ammo == 0 && !holdingRight)
-			{
-				// Catch
-				ammo++;
-			}
-			else
-			{
-				// Block
-			}
-			
 		}
 	}
 
@@ -119,6 +99,26 @@ public class Shooting : MonoBehaviour
 		{
 			// Spawn box collider infront of Player to hit
 
+		}
+	}
+
+	void OnCollisionEnter(Collision col)
+	{
+		if (col.gameObject.tag == "Ball")
+		{
+			if (input.RightBumper.IsPressed)
+			{
+				if (ammo == 0 && !holdingRight)
+				{
+					// Catch
+					ammo++;
+				}
+			}
+			else
+			{				
+				gameObject.GetComponent<HealthClass>().playerHealth -= col.gameObject.GetComponent<Ball>().damage;
+			}
+			Destroy(col.gameObject);
 		}
 	}
 }

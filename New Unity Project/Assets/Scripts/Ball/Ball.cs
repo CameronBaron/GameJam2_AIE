@@ -7,15 +7,15 @@ public class Ball : MonoBehaviour
 	Rigidbody rb;
 	PhysicMaterial pmat;
 
+	public Vector3 gravity = new Vector3(0, -4, 0);
+
 	public float lifeTime = 20;
 	private float lifetTimeDefault = 20;
 	private float lifeCounter = 0;
-
-	private float bounces = 0;
+	
+	public float damage = 100;
 
 	//Powerup Vars
-	private int maxBounces = 10000;             // For Rikochet ball
-	private int maxBouncesDefault = 1;
 	private float scale = 1;					// For Giant Ball
 	private GameObject target = null;               // For Homing ball
 
@@ -27,40 +27,19 @@ public class Ball : MonoBehaviour
 	{
 		rb = GetComponent<Rigidbody>();
 		pmat = GetComponent<PhysicMaterial>();
+		gameObject.tag = "Ball";
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
+		rb.AddForce(gravity, ForceMode.Force);
 		if (rb.velocity != Vector3.zero)
 			lifeCounter += Time.deltaTime;
 
-		if (lifeCounter > lifeTime || bounces > maxBounces)
+		if (lifeCounter > lifeTime)
 		{
 			Destroy(gameObject);
-		}
-	}
-
-	// On Collision Enter
-	void OnCollisionEnter(Collision col)
-	{
-		foreach (ContactPoint contact in col.contacts)
-		{
-			//Debug.DrawRay(contact.point, contact.normal, Color.white);
-		}
-
-		if (col.gameObject.tag == "Player")
-		{
-			// remove health
-		}
-		else
-		{
-			bounces++;
-		}
-
-		if (col.relativeVelocity.magnitude > 2)
-		{
-			//play audio
 		}
 	}
 }
