@@ -2,20 +2,27 @@
 using System.Collections;
 
 public class PowerUpScript : MonoBehaviour {
-
+	
 	int pUpType = 1;
-
+	[HideInInspector]
 	public float pHealthMod = 1;
+	[HideInInspector]
 	public float pMoveMod = 1.0f;
+	[HideInInspector]
 	public GameObject ballTarget = null;
+	[HideInInspector]
 	public float bSpeedMod = 1.0f;
+	[HideInInspector]
 	public float bSizeMod = 1.0f;
+
+	public float lifeTimer = 15.0f;
 
 	// Use this for initialization
 	void Start ()
 	{
 		pUpType = Random.Range(1, 6);
 		transform.tag = "PowerUp";
+		lifeTimer = 10.0f;
 	}
 	
 	// Update is called once per frame
@@ -44,26 +51,21 @@ public class PowerUpScript : MonoBehaviour {
 				break;
 			default:
 				break;
+
 		}
+
+		lifeTimer -= Time.deltaTime;
+
+		if (lifeTimer <= 0)
+			Destroy(gameObject);
 	}
 
-	//void OnCollisionEnter(Collision col)
-	//{
-	//	if(col.gameObject.tag == "Player")
-	//	{
-	//		// Pass vars to Player
-	//		// Player Health
-	//		// Player move speed
-	//		// 
-	//		// 
-	//		// 
-	//		// Ball Target
-	//		// Ball Speed
-	//		// Ball Size Mod
-	//		// 
-
-	//		Destroy(gameObject);
-	//	}
-	//}
+	void OnCollisionEnter(Collision col)
+	{
+		if (col.gameObject.tag == "ground")
+		{
+			gameObject.GetComponent<Rigidbody>().AddForce(0, 1.5f, 0, ForceMode.Impulse);
+		}
+	}
 
 }

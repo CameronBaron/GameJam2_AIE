@@ -4,12 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-<<<<<<< HEAD
-  - PowerUp
-=======
-  - Ground
-  - Ball
->>>>>>> 96a45423093826f9cef7aa26cc23ccb8102107bf
+  - ground
+  - New Tag
   layers:
   - Default
   - TransparentFX

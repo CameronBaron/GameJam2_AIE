@@ -23,7 +23,7 @@ public class PowerUpSpawnerScript : MonoBehaviour {
 			{
 				Vector3 newPos;
 				newPos.x = transform.position.x;
-				newPos.y = transform.position.y + 0.2f;
+				newPos.y = transform.position.y + .5f;
 				newPos.z = transform.position.z;
 				GameObject newPowerup = Instantiate(powerup, newPos, Quaternion.identity) as GameObject;
 				spawnTimer = 2;
