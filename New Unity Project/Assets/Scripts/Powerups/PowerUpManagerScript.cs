@@ -39,7 +39,7 @@ public class PowerUpManagerScript : MonoBehaviour {
 
 			coolDown = 1;
 		}
-		Debug.Log("amount of spawners: " + powerUpSpawners.Count.ToString());
+		//Debug.Log("amount of spawners: " + powerUpSpawners.Count.ToString());
 	}
 
 

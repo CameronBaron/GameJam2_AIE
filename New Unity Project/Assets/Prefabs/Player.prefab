@@ -241,7 +241,11 @@ Prefab:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 0}
+<<<<<<< HEAD
+      propertyPath: m_Enabled
+=======
       propertyPath: m_IsTrigger
+>>>>>>> 14377d617b0a4b4074ab4d91ffed071f8ba71cc2
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
