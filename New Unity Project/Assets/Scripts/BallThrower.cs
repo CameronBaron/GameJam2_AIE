@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class BallThrower : MonoBehaviour
 {
@@ -13,22 +13,33 @@ public class BallThrower : MonoBehaviour
 	public float spawnTime = 1;
 	private float spawnCounter = 0;
 
+	public int maxNumBalls = 6;
+	private GameObject[] ballsInPlay;
+
 	// Use this for initialization
 	void Start ()
 	{
-	
+		ballsInPlay = GameObject.FindGameObjectsWithTag("Ball");
 	}
-	
+
 	// Update is called once per frame
 	void Update ()
 	{
-		spawnCounter += Time.deltaTime;
-
-		if (spawnCounter > spawnTime)
+		
+		if (ballsInPlay.Length < maxNumBalls)
 		{
-			ball = Instantiate(ballPrefab, spawnPos.transform.position, Quaternion.identity) as GameObject;
-			ball.GetComponent<Rigidbody>().AddForce(throwDir * throwSpeed, ForceMode.Impulse);
-			spawnCounter = 0;
+			spawnCounter += Time.deltaTime;
+			if (spawnCounter > spawnTime)
+			{
+				ball = Instantiate(ballPrefab, spawnPos.transform.position, Quaternion.identity) as GameObject;
+				ball.GetComponent<Rigidbody>().AddForce(throwDir * throwSpeed, ForceMode.Impulse);
+				spawnCounter = 0;
+			}
 		}
+	}
+
+	void LateUpdate()
+	{
+		ballsInPlay = GameObject.FindGameObjectsWithTag("Ball");
 	}
 }

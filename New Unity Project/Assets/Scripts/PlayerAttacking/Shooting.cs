@@ -118,7 +118,7 @@ public class Shooting : MonoBehaviour
 			{				
 				gameObject.GetComponent<HealthClass>().playerHealth -= col.gameObject.GetComponent<Ball>().damage;
 			}
-			Destroy(col.gameObject);
+			//Destroy(col.gameObject);
 		}
 	}
 }

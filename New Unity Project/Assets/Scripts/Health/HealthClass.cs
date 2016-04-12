@@ -20,12 +20,17 @@ public class HealthClass : MonoBehaviour
     private BoxCollider bc;
     public GameObject respawnPoint;
 
+	public ParticleSystem deathParticles;
+
 	public string team;
+
+	Color originalColor;
 
 	// Use this for initialization
 	void Start ()
     {
         bc = GetComponent<BoxCollider>();
+		originalColor = GetComponent<Renderer>().material.color;
 	}
 	
 	// Update is called once per frame
@@ -64,18 +69,30 @@ public class HealthClass : MonoBehaviour
 
         transform.position = respawnPoint.transform.position;
         playerHealth = 100;
+		Color newColor = new Color(originalColor.r, originalColor.g, originalColor.b, Mathf.Cos(Time.deltaTime));
 
-        while (isInvulnerable)
+		while (isInvulnerable)
         {
             invulnerabilityTimer += Time.deltaTime;
             bc.enabled = false;
+
+			GetComponent<Renderer>().material.color = newColor;
 
             if (invulnerabilityTimer >= invulnerabilityTime)
             {
                 isInvulnerable = false;
                 bc.enabled = true;
                 invulnerabilityTimer = 0;
-            }
+				GetComponent<Renderer>().material.color = originalColor;
+			}
         }
     }
+
+	void OnDestroy()
+	{
+		if (deathParticles != null)
+		{
+			ParticleSystem ps = Instantiate(deathParticles, transform.position, Quaternion.identity) as ParticleSystem;
+		}
+	}
 }

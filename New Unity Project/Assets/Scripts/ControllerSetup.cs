@@ -4,12 +4,13 @@ using System.Collections.Generic;
 
 public class ControllerSetup : MonoBehaviour
 {
-	public GameObject playerPrefab;
+	public GameObject[] playerPrefabs = new GameObject[4];
 
 	public Queue<Vector3> spawnPos = new Queue<Vector3>();
 
 	private List<GameObject> players = new List<GameObject>();
 	private const int maxPlayers = 4;
+	private int currPlayer = 0;
 	// Use this for initialization
 	void Start ()
 	{
@@ -56,11 +57,11 @@ public class ControllerSetup : MonoBehaviour
 	{
 		if (players.Count < maxPlayers)
 		{
-			var p = Instantiate(playerPrefab, spawnPos.Dequeue(), Quaternion.identity) as GameObject; // Need spawn position
+			var p = Instantiate(playerPrefabs[currPlayer], spawnPos.Dequeue(), Quaternion.identity) as GameObject; // Need spawn position
 			p.GetComponent<PlayerMovementScript>().input = input;
 			players.Add(p);
 
-			if (players.Count <= 2)
+			if (players.Count % 2 == 0)
 			{
 				p.GetComponent<HealthClass>().team = "Red";
 			}
@@ -68,6 +69,7 @@ public class ControllerSetup : MonoBehaviour
 			{
 				p.GetComponent<HealthClass>().team = "Blue";
 			}
+			currPlayer++;
 		}
 	}
 }

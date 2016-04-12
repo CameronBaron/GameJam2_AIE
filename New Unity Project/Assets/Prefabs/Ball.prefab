@@ -13,6 +13,7 @@ GameObject:
   - 23: {fileID: 2388358}
   - 54: {fileID: 5426762}
   - 114: {fileID: 11413448}
+  - 114: {fileID: 11458680}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -94,6 +95,18 @@ MonoBehaviour:
   gravity: {x: 0, y: -4, z: 0}
   lifeTime: 20
   damage: 100
+--- !u!114 &11458680
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 168304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f00527fe6e6c7940afe7248d972c798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ps: {fileID: 19860138, guid: 932b73acec594654da47f153bff464a9, type: 2}
 --- !u!135 &13543440
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -134,6 +147,11 @@ Prefab:
       propertyPath: m_Mass
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ps
+      value: 
+      objectReference: {fileID: 19860138, guid: 932b73acec594654da47f153bff464a9,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 168304}
