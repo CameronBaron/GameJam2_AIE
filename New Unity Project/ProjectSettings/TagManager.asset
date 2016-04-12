@@ -6,8 +6,11 @@ TagManager:
   tags:
   - Ball
   - PowerUp
+<<<<<<< HEAD
   - RedGoal
   - BlueGoal
+=======
+>>>>>>> 14377d617b0a4b4074ab4d91ffed071f8ba71cc2
   layers:
   - Default
   - TransparentFX

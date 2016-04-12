@@ -5,8 +5,7 @@ public class HealthClass : MonoBehaviour
 {
     /*
         things to add to this:
-
-        Respawn point validification
+        
         Particle effects on respawn
     */
     public float playerHealth = 100;
@@ -19,6 +18,7 @@ public class HealthClass : MonoBehaviour
     public float invulnerabilityTime;
 
     private BoxCollider bc;
+    public GameObject respawnPoint;
 
 	// Use this for initialization
 	void Start ()
@@ -59,6 +59,9 @@ public class HealthClass : MonoBehaviour
     void PlayerRespawn()
     {
         float invulnerabilityTimer = 0;
+
+        transform.position = respawnPoint.transform.position;
+        playerHealth = 100;
 
         while (isInvulnerable)
         {
