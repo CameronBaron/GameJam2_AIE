@@ -28,7 +28,7 @@ public class PowerUpSpawnerScript : MonoBehaviour {
 				GameObject newPowerup = Instantiate(powerup, newPos, Quaternion.identity) as GameObject;
 				spawnTimer = 2;
 				objectCount++;
-				Debug.Log("amount of powerups: " + objectCount.ToString());
+				//Debug.Log("amount of powerups: " + objectCount.ToString());
 				isActive = false;
 			}
 		}

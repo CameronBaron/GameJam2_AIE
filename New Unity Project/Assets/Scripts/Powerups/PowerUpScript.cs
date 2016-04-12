@@ -32,22 +32,22 @@ public class PowerUpScript : MonoBehaviour {
 		{
 			case 1: //Invincibility
 				pHealthMod = Mathf.Infinity;
-				Debug.Log("p health : " + pHealthMod);
+				//Debug.Log("p health : " + pHealthMod);
 				break;
 			case 2: //Player Move Speed
 				pMoveMod = 2.0f;
-				Debug.Log("p move : " + pMoveMod);
+				//Debug.Log("p move : " + pMoveMod);
 				break;
 			case 3: // Ball Target
-				Debug.Log("b targ : " + ballTarget);
+				//Debug.Log("b targ : " + ballTarget);
 				break;
 			case 4: // Ball Speed
 				bSpeedMod = 2.0f;
-				Debug.Log("b speed : " + bSpeedMod);
+				//Debug.Log("b speed : " + bSpeedMod);
 				break;
 			case 5: // Ball Size Mod
 				bSizeMod = 2.0f;
-				Debug.Log("b size : " + bSizeMod);
+				//Debug.Log("b size : " + bSizeMod);
 				break;
 			default:
 				break;
