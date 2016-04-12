@@ -1,7 +1,7 @@
 Scripts:
 
-- Player Movement		Josh - WIP
-- Player Attack
+- Player Movement		Josh - Done
+- Player Attack			Cameron - 3/4 Done
 
 - AI movement
 - AI attack
@@ -14,5 +14,8 @@ Scripts:
 
 - Sounds
 
-- PowerUps			Simon
+- PowerUps			Simon - WIP
 
+- Scoring System
+
+- Health Class / Stamina Class
