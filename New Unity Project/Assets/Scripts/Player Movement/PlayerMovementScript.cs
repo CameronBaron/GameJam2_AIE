@@ -4,8 +4,9 @@ using InControl;
 public class PlayerMovementScript : MonoBehaviour
 {
     public InputDevice input { get; set; }
+	private Animator anim;
 
-    public float movementSpeed;
+    public float movementSpeed = 13;
     [SerializeField]
     private float jumpPower;
     [SerializeField]
@@ -33,50 +34,67 @@ public class PlayerMovementScript : MonoBehaviour
 	void Start ()
     {
         rb = GetComponent<Rigidbody>();
+		anim = GetComponent<Animator>();
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
         dodgeCooldownTimer += Time.deltaTime;
-        Vector3 directionOfStick = new Vector3(input.LeftStick.X, 0, input.LeftStick.Y);
+		Vector3 directionOfStick = Vector3.zero;
 
-        /* *****************************************************
-           Update part done for updating the position of the player 
-           ***************************************************** */ 
-        if (input.LeftStick.X != 0.0f && input.LeftStickY != 0.0f)
-        {
-            transform.position += new Vector3(input.LeftStick.X * movementSpeed * Time.deltaTime, 0, input.LeftStick.Y * movementSpeed * Time.deltaTime);
-        }
+		if (input != null)
+		{
+			directionOfStick = new Vector3(input.LeftStick.X, 0, input.LeftStick.Y);
 
-        /* *****************************************************
-           Update part done for updating the rotation and looking position of the player 
-           ***************************************************** */
-        if (input.RightStick.X != 0.0f && input.RightStick.Y != 0.0f)
-        {
-            Vector3 lookAtPosition = transform.position + new Vector3(input.RightStickX, 0.0f, input.RightStickY);
-            Vector3 rotation = transform.rotation.eulerAngles;
-            transform.LookAt(lookAtPosition);
-            transform.rotation = Quaternion.Lerp(Quaternion.Euler(rotation), transform.rotation, 0.2f);
-        }
+			/* *****************************************************
+			   Update part done for updating the position of the player 
+			   ***************************************************** */
+			if (input.LeftStick.X != 0.0f && input.LeftStickY != 0.0f)
+			{
+				transform.position += new Vector3(input.LeftStick.X * movementSpeed * Time.deltaTime, 0, input.LeftStick.Y * movementSpeed * Time.deltaTime);
+				anim.Play("Walking");
+			}
+			else
+			{
+				anim.Play("IDLE");
+			}
 
-        /* *****************************************************
-           Update part to control the cooling down of the dodge timers & dodge control
-           ***************************************************** */
-        if (dodgeCooldownTimer >= dodgeResetTime)
-        {
-            canDodge = true;
-            dodgeCooldownTimer = 0;
-        }
+			/* *****************************************************
+			   Update part done for updating the rotation and looking position of the player 
+			   ***************************************************** */
+			if (input.RightStick.X != 0.0f && input.RightStick.Y != 0.0f)
+			{
+				Vector3 lookAtPosition = transform.position + new Vector3(input.RightStickX, 0.0f, input.RightStickY);
+				Vector3 rotation = transform.rotation.eulerAngles;
+				transform.LookAt(lookAtPosition);
+				transform.rotation = Quaternion.Lerp(Quaternion.Euler(rotation), transform.rotation, 0.2f);
+				anim.Play("Walking");
+			}
+			else
+			{
+				anim.Play("IDLE");
+			}
 
-        if (canDodge)
-        {
-            if (input.LeftBumper.WasPressed)
-            {
-                rb.AddForce(directionOfStick * dodgePower, ForceMode.Impulse);
-                canDodge = false;
-            }
-        }        
+			/* *****************************************************
+			   Update part to control the cooling down of the dodge timers & dodge control
+			   ***************************************************** */
+			if (dodgeCooldownTimer >= dodgeResetTime)
+			{
+				canDodge = true;
+				dodgeCooldownTimer = 0;
+			}
+
+			if (canDodge)
+			{
+				if (input.LeftBumper.WasPressed)
+				{
+					rb.AddForce(directionOfStick * dodgePower, ForceMode.Impulse);
+					anim.Play("Dash", -1, 0f);
+					canDodge = false;
+				}
+			}
+		}
 		if(pUpActive)
 		{
 			pUpTimer += Time.deltaTime;

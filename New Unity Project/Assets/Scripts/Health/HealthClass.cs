@@ -9,10 +9,9 @@ public class HealthClass : MonoBehaviour
         Particle effects on respawn
     */
     public float playerHealth = 100;
-
-    bool isDead;
-    bool isInvulnerable;
-    bool isDying;
+	
+    bool isInvulnerable = false;
+    bool isDying = false;
 
     float invulnerableCounter;
     public float invulnerabilityTime;
@@ -38,11 +37,8 @@ public class HealthClass : MonoBehaviour
     {
         if (playerHealth <= 0)
         {
-            if (!isDead)
-            {
-                isDying = true;
-                PlayerDeath();
-            }
+            isDying = true;
+            PlayerDeath();
         }
 	}
 
@@ -56,9 +52,9 @@ public class HealthClass : MonoBehaviour
             
             if (respawnTimer <= 1.0f)
             {
-                PlayerRespawn();
                 isDying = false;
                 isInvulnerable = true;
+                PlayerRespawn();
             }
         }
     }
@@ -67,13 +63,13 @@ public class HealthClass : MonoBehaviour
     {
         float invulnerabilityTimer = 0;
 
-        transform.position = respawnPoint.transform.position;
+        //transform.position = respawnPoint.transform.position;
         playerHealth = 100;
-		Color newColor = new Color(originalColor.r, originalColor.g, originalColor.b, Mathf.Cos(Time.deltaTime));
 
 		while (isInvulnerable)
-        {
-            invulnerabilityTimer += Time.deltaTime;
+		{
+			Color newColor = new Color(originalColor.r, originalColor.g, originalColor.b, Mathf.Cos(Time.deltaTime));
+			invulnerabilityTimer += Time.deltaTime;
             bc.enabled = false;
 
 			GetComponent<Renderer>().material.color = newColor;
@@ -88,7 +84,7 @@ public class HealthClass : MonoBehaviour
         }
     }
 
-	void OnDestroy()
+	void Destroy()
 	{
 		if (deathParticles != null)
 		{
