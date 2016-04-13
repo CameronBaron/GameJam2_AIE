@@ -16,7 +16,7 @@ GameObject:
   - 114: {fileID: 11458680}
   m_Layer: 0
   m_Name: Ball
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,6 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravity: {x: 0, y: -4, z: 0}
+  deathParticles: {fileID: 0}
   lifeTime: 20
   damage: 100
 --- !u!114 &11458680
@@ -106,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f00527fe6e6c7940afe7248d972c798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ps: {fileID: 19860138, guid: 932b73acec594654da47f153bff464a9, type: 2}
+  particles: {fileID: 0}
 --- !u!135 &13543440
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -152,6 +153,10 @@ Prefab:
       value: 
       objectReference: {fileID: 19860138, guid: 932b73acec594654da47f153bff464a9,
         type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Ball
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 168304}

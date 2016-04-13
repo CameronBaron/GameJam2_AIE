@@ -31,7 +31,17 @@ public class Shooting : MonoBehaviour
 	private Transform playerTransform;
 	private BoxCollider bc;
 
+<<<<<<< HEAD
 	private Animator anim;
+=======
+	//powerup things
+	[HideInInspector]
+	public float scaleMod = 1.0f;
+	[HideInInspector]
+	public bool pUpActive = false;
+	float pUpTimer = 0.0f;
+	float pUpMaxTime = 5;
+>>>>>>> 4b8f6aa30d785329110415eb56fccc8bb189eeca
 
 	// Use this for initialization
 	void Start ()
@@ -49,6 +59,18 @@ public class Shooting : MonoBehaviour
 			HoldBalls();
 		if (rightBall != null)
 			rightBall.transform.position = rightHand.position;
+
+		if (pUpActive)
+		{
+			pUpTimer += Time.deltaTime;
+			if (pUpTimer > pUpMaxTime)
+			{
+				//reset values to default
+				scaleMod = 1.0f;
+				pUpTimer = 0;
+				pUpActive = false;
+			}
+		}
 
 		Throw();
 		DropBall();
@@ -70,6 +92,7 @@ public class Shooting : MonoBehaviour
 	{
 		if (input != null)
 		{
+<<<<<<< HEAD
 			if (holdingRight && input.RightTrigger.IsPressed)
 			{
 				if (chargeUpCounter < chargeUpTimer)
@@ -88,6 +111,14 @@ public class Shooting : MonoBehaviour
 					rightBall = null;
 				}
 			}
+=======
+			rightBall.transform.localScale *= scaleMod;
+			rightBall.GetComponent<Rigidbody>().useGravity = true;
+			rightBall.GetComponent<Rigidbody>().AddForce(playerTransform.forward * (ballSpeed + chargeUpCounter * 3), ForceMode.Impulse);
+			holdingRight = false;
+			chargeUpCounter = 0;
+			rightBall = null;
+>>>>>>> 4b8f6aa30d785329110415eb56fccc8bb189eeca
 		}
 	}
 
