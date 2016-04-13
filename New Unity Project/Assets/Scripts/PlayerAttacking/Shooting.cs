@@ -30,10 +30,9 @@ public class Shooting : MonoBehaviour
 
 	private Transform playerTransform;
 	private BoxCollider bc;
-
-<<<<<<< HEAD
+	
 	private Animator anim;
-=======
+
 	//powerup things
 	[HideInInspector]
 	public float scaleMod = 1.0f;
@@ -41,7 +40,6 @@ public class Shooting : MonoBehaviour
 	public bool pUpActive = false;
 	float pUpTimer = 0.0f;
 	float pUpMaxTime = 5;
->>>>>>> 4b8f6aa30d785329110415eb56fccc8bb189eeca
 
 	// Use this for initialization
 	void Start ()
@@ -92,33 +90,26 @@ public class Shooting : MonoBehaviour
 	{
 		if (input != null)
 		{
-<<<<<<< HEAD
 			if (holdingRight && input.RightTrigger.IsPressed)
 			{
 				if (chargeUpCounter < chargeUpTimer)
+				{
 					chargeUpCounter += Time.deltaTime;
+					anim.Play("BeginThrow");
+				}
 			}
 
 			// Throw (apply force) in players forward direction
 			if (holdingRight && input.RightTrigger.WasReleased)
 			{
-				//if (anim.GetComponent<Animation>().Play())
-				{
-					rightBall.GetComponent<Rigidbody>().useGravity = true;
-					rightBall.GetComponent<Rigidbody>().AddForce(playerTransform.forward * (ballSpeed + chargeUpCounter * 3), ForceMode.Impulse);
-					holdingRight = false;
-					chargeUpCounter = 0;
-					rightBall = null;
-				}
+				anim.Play("EndThrow");
+				rightBall.GetComponent<Rigidbody>().useGravity = true;
+				rightBall.GetComponent<Rigidbody>().AddForce(playerTransform.forward * (ballSpeed + chargeUpCounter * 3), ForceMode.Impulse);
+				holdingRight = false;
+				chargeUpCounter = 0;
+				rightBall = null;
 			}
-=======
 			rightBall.transform.localScale *= scaleMod;
-			rightBall.GetComponent<Rigidbody>().useGravity = true;
-			rightBall.GetComponent<Rigidbody>().AddForce(playerTransform.forward * (ballSpeed + chargeUpCounter * 3), ForceMode.Impulse);
-			holdingRight = false;
-			chargeUpCounter = 0;
-			rightBall = null;
->>>>>>> 4b8f6aa30d785329110415eb56fccc8bb189eeca
 		}
 	}
 

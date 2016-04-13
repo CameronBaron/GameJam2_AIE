@@ -1340,7 +1340,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 117748}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.388, y: 0.1, z: -10.155}
+  m_LocalPosition: {x: -3.7151456, y: 2.6993712e-16, z: -12.156888}
   m_LocalScale: {x: 0.7, y: 0.6, z: 0.7}
   m_Children:
   - {fileID: 472504}
@@ -1556,7 +1556,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 145436}
-  m_LocalRotation: {x: 0.65103656, y: 0.30261663, z: -0.29143384, w: 0.6321717}
+  m_LocalRotation: {x: 0.6510365, y: 0.3026166, z: -0.2914338, w: 0.63217163}
   m_LocalPosition: {x: 2.037523, y: 0.00000027358357, z: -6.7116053e-16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2004,7 +2004,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 163808}
-  m_LocalRotation: {x: 0.65103656, y: 0.30261663, z: -0.29143384, w: 0.6321717}
+  m_LocalRotation: {x: 0.6510365, y: 0.3026166, z: -0.2914338, w: 0.63217163}
   m_LocalPosition: {x: -2.0375242, y: -3.3861802e-15, z: 2.2078137e-16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2254,6 +2254,7 @@ MonoBehaviour:
   dodgePower: 50
   dodgeCooldownTimer: 0
   dodgeResetTime: 3
+  pUpActive: 0
 --- !u!114 &11429242
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2266,10 +2267,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ball: {fileID: 168304, guid: 1cb656bae9077344093b229f3ffbd474, type: 2}
-  rightHand: {fileID: 142404}
+  rightHand: {fileID: 480310}
   ammo: 1
-  ballSpeed: 25
-  chargeUpTimer: 2
+  ballSpeed: 100
+  chargeUpTimer: 4
+  scaleMod: 1
+  pUpActive: 0
 --- !u!114 &11488242
 MonoBehaviour:
   m_ObjectHideFlags: 1

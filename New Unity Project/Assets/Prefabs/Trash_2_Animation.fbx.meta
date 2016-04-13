@@ -27,9 +27,10 @@ ModelImporter:
     400018: //RootNode
     4300000: Body
     7400000: Walking
-    7400002: Throw
+    7400002: BeginThrow
     7400004: Dash
     7400006: IDLE
+    7400008: EndThrow
     9500000: //RootNode
     13700000: Body
   materials:
@@ -64,7 +65,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -102,10 +103,10 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 1
     - serializedVersion: 16
-      name: Throw
+      name: BeginThrow
       takeName: Take 001
       firstFrame: 20
-      lastFrame: 36
+      lastFrame: 30
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -202,6 +203,54 @@ ModelImporter:
       takeName: Take 001
       firstFrame: 54
       lastFrame: 100
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: Reference_Joint
+        weight: 1
+      - path: Reference_Joint/Hip_Joint
+        weight: 1
+      - path: Reference_Joint/Hip_Joint/Left_Leg
+        weight: 1
+      - path: Reference_Joint/Hip_Joint/Right_Leg
+        weight: 1
+      - path: Reference_Joint/Hip_Joint/Top_Joint
+        weight: 1
+      - path: Reference_Joint/Hip_Joint/Top_Joint/Head
+        weight: 1
+      - path: Reference_Joint/Hip_Joint/Top_Joint/Left_Shoulder
+        weight: 1
+      - path: Reference_Joint/Hip_Joint/Top_Joint/Right_Shoulder
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: EndThrow
+      takeName: Take 001
+      firstFrame: 30
+      lastFrame: 36
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
