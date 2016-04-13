@@ -16,7 +16,7 @@ public class Shooting : MonoBehaviour
 	*/
 	InputDevice input;
 	public GameObject ball;
-	public GameObject rightHand;
+	public Transform rightHand;
 
 	public int ammo = 1;
 	public int ballSpeed = 100;
@@ -31,12 +31,15 @@ public class Shooting : MonoBehaviour
 	private Transform playerTransform;
 	private BoxCollider bc;
 
+	private Animator anim;
+
 	// Use this for initialization
 	void Start ()
 	{
 		gameObject.tag = "Player";
 		playerTransform = GetComponentInParent<Transform>();
 		input = GetComponent<PlayerMovementScript>().input;
+		anim = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -45,7 +48,7 @@ public class Shooting : MonoBehaviour
 		if (!holdingRight) // If not holding in one hand, check to see if we should be
 			HoldBalls();
 		if (rightBall != null)
-			rightBall.transform.position = rightHand.transform.position;
+			rightBall.transform.position = rightHand.position;
 
 		Throw();
 		DropBall();
@@ -55,7 +58,7 @@ public class Shooting : MonoBehaviour
 	{
 		if (ammo > 0 && !holdingRight)
 		{
-			rightBall = Instantiate(ball, rightHand.transform.position, Quaternion.identity) as GameObject;
+			rightBall = Instantiate(ball, rightHand.position, Quaternion.identity) as GameObject;
 			rightBall.GetComponent<Rigidbody>().useGravity = false;
 			rightBall.tag = "Ball";
 			holdingRight = true;
@@ -65,27 +68,32 @@ public class Shooting : MonoBehaviour
 
 	void Throw()
 	{
-		if (holdingRight && input.RightTrigger.IsPressed)
+		if (input != null)
 		{
-			if (chargeUpCounter < chargeUpTimer)
-				chargeUpCounter += Time.deltaTime;
-		}
-		// On right/left trigger press
-		// If ball in hand
-		// Throw (apply force) in players forward direction
-		if (holdingRight && input.RightTrigger.WasReleased)
-		{
-			rightBall.GetComponent<Rigidbody>().useGravity = true;
-			rightBall.GetComponent<Rigidbody>().AddForce(playerTransform.forward * (ballSpeed + chargeUpCounter * 3), ForceMode.Impulse);
-			holdingRight = false;
-			chargeUpCounter = 0;
-			rightBall = null;
+			if (holdingRight && input.RightTrigger.IsPressed)
+			{
+				if (chargeUpCounter < chargeUpTimer)
+					chargeUpCounter += Time.deltaTime;
+			}
+
+			// Throw (apply force) in players forward direction
+			if (holdingRight && input.RightTrigger.WasReleased)
+			{
+				//if (anim.GetComponent<Animation>().Play())
+				{
+					rightBall.GetComponent<Rigidbody>().useGravity = true;
+					rightBall.GetComponent<Rigidbody>().AddForce(playerTransform.forward * (ballSpeed + chargeUpCounter * 3), ForceMode.Impulse);
+					holdingRight = false;
+					chargeUpCounter = 0;
+					rightBall = null;
+				}
+			}
 		}
 	}
 
 	void DropBall()
 	{
-		if (input.Action2.IsPressed && holdingRight)
+		if (input != null && (input.Action2.IsPressed && holdingRight))
 		{
 			rightBall.GetComponent<Rigidbody>().useGravity = true;
 			holdingRight = false;
@@ -106,7 +114,7 @@ public class Shooting : MonoBehaviour
 	{
 		if (col.gameObject.tag == "Ball")
 		{
-			if (input.RightBumper.IsPressed)
+			if (input != null && input.RightBumper.IsPressed)
 			{
 				if (ammo == 0 && !holdingRight)
 				{

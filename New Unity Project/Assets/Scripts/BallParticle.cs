@@ -7,6 +7,9 @@ public class BallParticle : MonoBehaviour
 	
 	void OnDestroy()
 	{
-		var particle = Instantiate(particles, GetComponentInParent<Transform>().position, Quaternion.identity);
+		if (particles != null)
+		{
+			var particle = Instantiate(particles, GetComponentInParent<Transform>().position, Quaternion.identity);
+		}
 	}
 }

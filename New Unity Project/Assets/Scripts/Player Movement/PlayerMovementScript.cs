@@ -31,7 +31,12 @@ public class PlayerMovementScript : MonoBehaviour
 	void Update ()
     {
         dodgeCooldownTimer += Time.deltaTime;
-        Vector3 directionOfStick = new Vector3(input.LeftStick.X, 0, input.LeftStick.Y);
+		Vector3 directionOfStick = Vector3.zero;
+
+		if (input != null)
+		{
+			directionOfStick = new Vector3(input.LeftStick.X, 0, input.LeftStick.Y);
+		}
 
         /* *****************************************************
            Update part done for updating the position of the player 
