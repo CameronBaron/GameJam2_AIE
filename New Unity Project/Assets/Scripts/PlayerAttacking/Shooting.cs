@@ -31,6 +31,14 @@ public class Shooting : MonoBehaviour
 	private Transform playerTransform;
 	private BoxCollider bc;
 
+	//powerup things
+	[HideInInspector]
+	public float scaleMod = 1.0f;
+	[HideInInspector]
+	public bool pUpActive = false;
+	float pUpTimer = 0.0f;
+	float pUpMaxTime = 5;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -46,6 +54,18 @@ public class Shooting : MonoBehaviour
 			HoldBalls();
 		if (rightBall != null)
 			rightBall.transform.position = rightHand.transform.position;
+
+		if (pUpActive)
+		{
+			pUpTimer += Time.deltaTime;
+			if (pUpTimer > pUpMaxTime)
+			{
+				//reset values to default
+				scaleMod = 1.0f;
+				pUpTimer = 0;
+				pUpActive = false;
+			}
+		}
 
 		Throw();
 		DropBall();
@@ -75,6 +95,7 @@ public class Shooting : MonoBehaviour
 		// Throw (apply force) in players forward direction
 		if (holdingRight && input.RightTrigger.WasReleased)
 		{
+			rightBall.transform.localScale *= scaleMod;
 			rightBall.GetComponent<Rigidbody>().useGravity = true;
 			rightBall.GetComponent<Rigidbody>().AddForce(playerTransform.forward * (ballSpeed + chargeUpCounter * 3), ForceMode.Impulse);
 			holdingRight = false;

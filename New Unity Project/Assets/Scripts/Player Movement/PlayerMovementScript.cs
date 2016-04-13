@@ -5,8 +5,7 @@ public class PlayerMovementScript : MonoBehaviour
 {
     public InputDevice input { get; set; }
 
-    [SerializeField]
-    private float movementSpeed;
+    public float movementSpeed;
     [SerializeField]
     private float jumpPower;
     [SerializeField]
@@ -20,6 +19,15 @@ public class PlayerMovementScript : MonoBehaviour
 
     bool isGrounded = true;
     bool canDodge = true;
+
+	//default values
+	//move 13
+	// dodge reset 3
+	//powerup timer
+	[HideInInspector]
+	public bool pUpActive = false;
+	float pUpTimer = 0.0f;
+	float pUpMaxTime = 5.0f;
 
 	// Use this for initialization
 	void Start ()
@@ -69,6 +77,17 @@ public class PlayerMovementScript : MonoBehaviour
                 canDodge = false;
             }
         }        
+		if(pUpActive)
+		{
+			pUpTimer += Time.deltaTime;
+			if (pUpTimer > pUpMaxTime)
+			{
+				//reset values to default
+				movementSpeed = 13;
+				pUpTimer = 0;
+				pUpActive = false;
+			}
+		}
     }
 
     void OnCollisionEnter(Collision collision)
