@@ -5,25 +5,26 @@ using System.Collections.Generic;
 public class PowerUpManagerScript : MonoBehaviour {
 
 
-	public static List<GameObject> powerUpSpawners = new List<GameObject>();
+	public List<GameObject> powerUpSpawners = new List<GameObject>();
 
 	public GameObject powerupspawner;
 
 	public int maxSpawners;
 	public float coolDown = 2.5f;
+	float defaultCoolDown = 10;
 	// Use this for initialization
 	void Start ()
 	{
-		for (int i = powerUpSpawners.Count; i < maxSpawners; i++)
-		{
-			Vector3 newPos;
-			newPos.x = Random.Range(-4.0f, 4.0f);
-			newPos.y = 0;
-			newPos.z = Random.Range(-4.0f, 4.0f);
-			GameObject newSpawner = Instantiate(powerupspawner, newPos, Quaternion.identity) as GameObject;
-			powerUpSpawners.Add(newSpawner);
-			//newSpawner.SetActive(false);
-		}
+		//for (int i = powerUpSpawners.Count; i < maxSpawners; i++)
+		//{
+		//	Vector3 newPos;
+		//	newPos.x = Random.Range(-4.0f, 4.0f);
+		//	newPos.y = 0;
+		//	newPos.z = Random.Range(-4.0f, 4.0f);
+		//	GameObject newSpawner = Instantiate(powerupspawner, newPos, Quaternion.identity) as GameObject;
+		//	powerUpSpawners.Add(newSpawner);
+		//	//newSpawner.SetActive(false);
+		//}
 	}
 	
 	// Update is called once per frame
@@ -37,9 +38,9 @@ public class PowerUpManagerScript : MonoBehaviour {
 
 			powerUpSpawners[randNum].GetComponent<PowerUpSpawnerScript>().isActive = true;
 
-			coolDown = 1;
+			coolDown = defaultCoolDown;
 		}
-		//Debug.Log("amount of spawners: " + powerUpSpawners.Count.ToString());
+		Debug.Log("amount of spawners: " + powerUpSpawners.Count.ToString());
 	}
 
 
